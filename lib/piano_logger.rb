@@ -5,6 +5,7 @@ require 'unimidi'
 class PianoLogger
   def initialize(device_name)
     @device = UniMIDI::Input.find_by_name(device_name)
+    @device.open
     fail "Could not open #{device_name}!" if @device.nil?
   end
 
@@ -13,7 +14,7 @@ class PianoLogger
 
     while @continue_log
       m = @device.gets
-      puts(m)
+      File.open('piano.log', 'a') { |f| f.write(m) }
     end
   end
 
@@ -21,3 +22,6 @@ class PianoLogger
     @continue_log = false
   end
 end
+
+pl = PianoLogger.new('nanoPAD')
+pl.start_logging
