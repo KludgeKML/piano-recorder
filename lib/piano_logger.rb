@@ -14,7 +14,11 @@ class PianoLogger
 
     while @continue_log
       m = @device.gets
-      File.open('piano.log', 'a') { |f| f.write(m) }
+      File.open('piano.log', 'a') do |f|
+        f.write(Time.now.to_i)
+        f.write(m)
+        f.write("\n")
+     end
     end
   end
 
