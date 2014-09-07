@@ -1,6 +1,8 @@
+#!/usr/bin/env ruby
 # encoding: UTF-8
 
 require 'unimidi'
+require_relative 'grouping_log'
 
 # logs MIDI data coming from a piano or keyboard
 class PianoLogger

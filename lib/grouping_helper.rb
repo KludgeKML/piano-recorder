@@ -1,10 +1,11 @@
 ## encoding: UTF-8
 
-DEAD_AIR_SECONDS = 5 * 60
+# Helps decide whether an object starts a new grouping or not
+class GroupingHelper
+  def group?(_log_object)
+    true
+  end
 
-# Helps decide whether two events form part of a group or not
-module GroupingHelper
-  def group?(time_a, time_b)
-    (time_b.to_i - time_a.to_i) < DEAD_AIR_SECONDS
+  def update(_log_object)
   end
 end
